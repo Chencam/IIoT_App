@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predix Node JS Starter App</title>
+  <link rel="stylesheet" href="stylesheets/style.css"></link>
+  <script src="../scripts/Chart.js"></script>
+<title> Google Charts Basic Bar Chart </title>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="idata.js"></script>
+<script src="~/predix-nodejs-starter/secure/idata.json"></script>
+  <script src="../scripts/Timeseries.js"></script>
+  <script src="../scripts/Asset.js"></script>
+</head>
+<body onload="configureTagsTimeseriesData();">
+    <div class="header">
+    <div>
+    <h2>Human Machine Interface for Compressors</h2>
+    <h4>Made by Chen Ye</h4>
+  </div>
+  <div>
+  </div>
+<div class="header-logo-container"> 
+    <img  class="header-logo" src="/images/predix_logo.svg"></img>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Compressor Data</h2>
+    <p>This page is gated by the check_token call of UAA.</p>
+
+    <ul>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/logout">Logout</a>
+      </li>
+    </ul>
+
+    <h2>Temperature Pressure Process Data</h2>
+   
+
+  <script type="text/javascript">
+var conf_data = [
+{"tagName":"TE53_3_1","value":80,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. HSS NDS"},{"tagName":"TE53_3_3","value":72,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. HSS DS"},{"tagName":"TE53_3_5","value":61,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. LSS NDS"},{"tagName":"TE53_3_6","value":65,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"axial bearing temp. LSS DS ULS"},{"tagName":"TE53_3_7","value":75,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. LSS DS"},{"tagName":"TE53_3_8","value":78,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"axial bearing temp. LSS DS LS"},{"tagName":"TE53_5_U","value":60,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor winding temperature U"},{"tagName":"TE53_5_V","value":57,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor winding temperature V"},{"tagName":"TE53_5_W","value":58,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor winding temperature W"},{"tagName":"MM_current","value":60,"lowerThreshold":0,"upperThreshold":100,"unit":"A","description":"main motor current"},{"tagName":"BOV_SP_DCS","value":20,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"BOV setpoint from DCS"},{"tagName":"TE53_4_1","value":73,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor bearing temperature de"},{"tagName":"TE53_4_2","value":74,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor bearing temperature nde"},{"tagName":"TE53_2","value":81,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"temperature gas inlet IGV"},
+{"tagName":"PT41_1","value":6000,"lowerThreshold":0,"upperThreshold":8000,"unit":"mbar ","description":"oil pressure"},{"tagName":"TIT51_2","value":62,"lowerThreshold":0,"upperThreshold":100,"unit":"degC","description":"oil temperature"},{"tagName":"GT61_1","value":31,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"IGV position"},{"tagName":"TE54_1","value":30,"lowerThreshold":-50,"upperThreshold":200,"unit":"degC","description":"suction temperature"},{"tagName":"PT45_2","value":800,"lowerThreshold":700,"upperThreshold":1000,"unit":"bar","description":"suction pressure"},{"tagName":"PDT45_1","value":21,"lowerThreshold":0,"upperThreshold":35,"unit":"mbar","description":"suction flow"},{"tagName":"PT45_3","value":1500,"lowerThreshold":700,"upperThreshold":2800,"unit":"mbar","description":"discharge pressure"},{"tagName":"XE64_1","value":63,"lowerThreshold":0,"upperThreshold":125,"unit":"µm","description":"X vibration gearbox hss nds"},{"tagName":"YE64_1","value":64,"lowerThreshold":0,"upperThreshold":125,"unit":"µm","description":"Y vibration gearbox hss nds"},
+{"tagName":"GT24_2 ","value":21,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"BOV position"},{"tagName":"IGV_SP_DCS","value":30,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"set point IGV from DCS"},{"tagName":"WE60_1","value":128,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No1 feeder"},{"tagName":"WE60_2","value":95,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No2 feeder"},{"tagName":"WE60_3","value":161,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No3 feeder"},{"tagName":"WE60_4","value":139,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No4 feeder"},{"tagName":"WE60_5","value":20,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No5 feeder"}
+]; 
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["tagName", "value", { role: "style" } ],
+        [conf_data[0].tagName, conf_data[0].value, "#b87333"],
+        [conf_data[1].tagName, conf_data[1].value, "#b87333"],
+        [conf_data[2].tagName, conf_data[2].value, "#b87333"],
+        [conf_data[3].tagName, conf_data[3].value, "#b87333"],
+        [conf_data[4].tagName, conf_data[4].value, "#b87333"],
+        [conf_data[5].tagName, conf_data[5].value, "#b87333"],
+        [conf_data[6].tagName, conf_data[6].value, "#b87333"],
+        [conf_data[7].tagName, conf_data[7].value, "#b87333"],
+        [conf_data[8].tagName, conf_data[8].value, "#b87333"],
+        [conf_data[11].tagName, conf_data[11].value, "#b87333"],
+        [conf_data[12].tagName, conf_data[12].value, "#b87333"],
+        [conf_data[13].tagName, conf_data[13].value, "#b87333"],
+        [conf_data[15].tagName, conf_data[15].value, "#b87333"],
+        [conf_data[17].tagName, conf_data[17].value, "#b87333"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Temperature, in degC",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+<div id="barchart_values" style="width: 900px; height: 300px;"></div>
+
+
+
+
+
+
+   
+  <script type="text/javascript">
+var conf_data = [
+{"tagName":"TE53_3_1","value":80,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. HSS NDS"},{"tagName":"TE53_3_3","value":72,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. HSS DS"},{"tagName":"TE53_3_5","value":61,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. LSS NDS"},{"tagName":"TE53_3_6","value":65,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"axial bearing temp. LSS DS ULS"},{"tagName":"TE53_3_7","value":75,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"radial bearing temp. LSS DS"},{"tagName":"TE53_3_8","value":78,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"axial bearing temp. LSS DS LS"},{"tagName":"TE53_5_U","value":60,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor winding temperature U"},{"tagName":"TE53_5_V","value":57,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor winding temperature V"},{"tagName":"TE53_5_W","value":58,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor winding temperature W"},{"tagName":"MM_current","value":60,"lowerThreshold":0,"upperThreshold":100,"unit":"A","description":"main motor current"},{"tagName":"BOV_SP_DCS","value":20,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"BOV setpoint from DCS"},{"tagName":"TE53_4_1","value":73,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor bearing temperature de"},{"tagName":"TE53_4_2","value":74,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"motor bearing temperature nde"},{"tagName":"TE53_2","value":81,"lowerThreshold":-200,"upperThreshold":850,"unit":"degC","description":"temperature gas inlet IGV"},
+{"tagName":"PT41_1","value":6000,"lowerThreshold":0,"upperThreshold":8000,"unit":"mbar ","description":"oil pressure"},{"tagName":"TIT51_2","value":62,"lowerThreshold":0,"upperThreshold":100,"unit":"degC","description":"oil temperature"},{"tagName":"GT61_1","value":31,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"IGV position"},{"tagName":"TE54_1","value":30,"lowerThreshold":-50,"upperThreshold":200,"unit":"degC","description":"suction temperature"},{"tagName":"PT45_2","value":800,"lowerThreshold":700,"upperThreshold":1000,"unit":"bar","description":"suction pressure"},{"tagName":"PDT45_1","value":21,"lowerThreshold":0,"upperThreshold":35,"unit":"mbar","description":"suction flow"},{"tagName":"PT45_3","value":1500,"lowerThreshold":700,"upperThreshold":2800,"unit":"mbar","description":"discharge pressure"},{"tagName":"XE64_1","value":63,"lowerThreshold":0,"upperThreshold":125,"unit":"µm","description":"X vibration gearbox hss nds"},{"tagName":"YE64_1","value":64,"lowerThreshold":0,"upperThreshold":125,"unit":"µm","description":"Y vibration gearbox hss nds"},
+{"tagName":"GT24_2 ","value":21,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"BOV position"},{"tagName":"IGV_SP_DCS","value":30,"lowerThreshold":0,"upperThreshold":100,"unit":"%","description":"set point IGV from DCS"},{"tagName":"WE60_1","value":128,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No1 feeder"},{"tagName":"WE60_2","value":95,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No2 feeder"},{"tagName":"WE60_3","value":161,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No3 feeder"},{"tagName":"WE60_4","value":139,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No4 feeder"},{"tagName":"WE60_5","value":20,"lowerThreshold":0,"upperThreshold":1000,"unit":"t","description":"weight load of No5 feeder"}
+]; 
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["tagName", "value", { role: "style" } ],
+        [conf_data[14].tagName, conf_data[14].value, 'silver'],
+        [conf_data[19].tagName, conf_data[19].value, 'silver'],
+        [conf_data[20].tagName, conf_data[20].value, 'silver']
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Pressure, in mbar",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+
+
+
+
+
+   
+    <script type="text/javascript">
+var datapfs=
+[{"ID":"FC1","Flowrate":24,"Pressure":4.55,"Rotational Speed":500,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":26,"Pressure":4.52,"Rotational Speed":500,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":27,"Pressure":4.5,"Rotational Speed":500,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":28,"Pressure":4,"Rotational Speed":500,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":28.5,"Pressure":3.25,"Rotational Speed":500,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":24,"Pressure":5.54,"Rotational Speed":600,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":26,"Pressure":5.51,"Rotational Speed":600,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":27,"Pressure":5.48,"Rotational Speed":600,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":28,"Pressure":4.95,"Rotational Speed":600,"Region":"Furnace Plant"},{"ID":"FC1","Flowrate":28.5,"Pressure":4.23,"Rotational Speed":600,"Region":"Furnace Plant"},{"ID":"CC1","Flowrate":23.5,"Pressure":3.51,"Rotational Speed":450,"Region":"Converter Plant"},{"ID":"CC1","Flowrate":25.5,"Pressure":3.46,"Rotational Speed":450,"Region":"Converter Plant"},{"ID":"CC1","Flowrate":26.5,"Pressure":3.43,"Rotational Speed":450,"Region":"Converter Plant"},{"ID":"CC1","Flowrate":27.5,"Pressure":2.96,"Rotational Speed":450,"Region":"Converter Plant"},{"ID":"CC1","Flowrate":28,"Pressure":2.21,"Rotational Speed":450,"Region":"Converter Plant"},{"ID":"CC2","Flowrate":24.5,"Pressure":4.5,"Rotational Speed":550,"Region":"Converter Plant"},{"ID":"CC2","Flowrate":26.5,"Pressure":4.47,"Rotational Speed":550,"Region":"Converter Plant"},{"ID":"CC2","Flowrate":27.5,"Pressure":4.45,"Rotational Speed":550,"Region":"Converter Plant"},{"ID":"CC2","Flowrate":28.5,"Pressure":3.95,"Rotational Speed":550,"Region":"Converter Plant"},{"ID":"CC2","Flowrate":29,"Pressure":3.2,"Rotational Speed":550,"Region":"Converter Plant"},{"ID":"CC3","Flowrate":24.5,"Pressure":4.49,"Rotational Speed":480,"Region":"Converter Plant"},{"ID":"CC3","Flowrate":26.5,"Pressure":4.45,"Rotational Speed":480,"Region":"Converter Plant"},{"ID":"CC3","Flowrate":27.5,"Pressure":4.42,"Rotational Speed":480,"Region":"Converter Plant"},{"ID":"CC3","Flowrate":28.5,"Pressure":3.93,"Rotational Speed":480,"Region":"Converter Plant"},{"ID":"CC3","Flowrate":29,"Pressure":3.18,"Rotational Speed":480,"Region":"Converter Plant"},{"ID":"AC1","Flowrate":25,"Pressure":6.51,"Rotational Speed":700,"Region":"Acid Plant"},{"ID":"AC1","Flowrate":27,"Pressure":5.48,"Rotational Speed":700,"Region":"Acid Plant"},{"ID":"AC1","Flowrate":28,"Pressure":5.44,"Rotational Speed":700,"Region":"Acid Plant"},{"ID":"AC1","Flowrate":29,"Pressure":4.93,"Rotational Speed":700,"Region":"Acid Plant"},{"ID":"AC1","Flowrate":29.5,"Pressure":4.21,"Rotational Speed":700,"Region":"Acid Plant"}];
+
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawSeriesChart);
+
+    function drawSeriesChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['ID', 'Discharge Flow Rate', 'Discharge Pressure', 'Region',  'Rotational Speed'],
+        ['FC1',    24.000,            4.550,      'Furnace Plant',  500],
+        ['FC1',    26.000,            4.520,      'Furnace Plant',  500],
+        ['FC1',    27.000,            4.500,      'Furnace Plant',  500],
+        ['FC1',    28.000,            4.000,      'Furnace Plant',  500],
+        ['FC1',    28.500,            3.250,      'Furnace Plant',  500],
+        ['FC1',    24.000,            5.540,      'Furnace Plant',  600],
+        ['FC1',    26.000,            5.510,      'Furnace Plant',  600],
+        ['FC1',    27.000,            5.480,      'Furnace Plant',  600],
+        ['FC1',    28.000,            4.950,      'Furnace Plant',  600],
+        ['FC1',    28.500,            4.230,      'Furnace Plant',  600],
+        ['CC1',    23.500,            3.510,      'Converter Plant',450],
+        ['CC1',    25.500,            3.460,      'Converter Plant',450],
+        ['CC1',    26.500,            3.430,      'Converter Plant',450],
+        ['CC1',    27.500,            2.960,      'Converter Plant',450],
+        ['CC1',    28.000,            2.210,      'Converter Plant',450],
+        ['CC2',    24.500,            4.500,      'Converter Plant',550],
+        ['CC2',    26.500,            4.470,      'Converter Plant',550],
+        ['CC2',    27.500,            4.450,      'Converter Plant',550],
+        ['CC2',    28.500,            3.950,      'Converter Plant',550],
+        ['CC2',    29.000,            3.200,      'Converter Plant',550],
+        ['CC3',    24.500,            4.490,      'Converter Plant',480],
+        ['CC3',    26.500,            4.450,      'Converter Plant',480],
+        ['CC3',    27.500,            4.420,      'Converter Plant',480],
+        ['CC3',    28.500,            3.930,      'Converter Plant',480],
+        ['CC3',    29.000,            3.180,      'Converter Plant',480],
+        ['AC1',    25.000,            6.510,      'Acid Plant',     700],
+        ['AC1',    27.000,            5.480,      'Acid Plant',     700],
+        ['AC1',    28.000,            5.440,      'Acid Plant',     700],
+        ['AC1',    29.000,            4.930,      'Acid Plant',     700],
+        ['AC1',    29.500,            4.210,      'Acid Plant',     700]
+      ]);
+
+      var options = {
+        title: 'Correlation between Discharge Pressure, Discharge Flow Rate ' +
+               'and Rotational Speed of compressors',
+        hAxis: {title: 'Discharge Pressure K mbar'},
+        vAxis: {title: 'Discharge Flow Rate K m3/h'},
+        bubble: {textStyle: {fontSize: 11}}
+      };
+
+      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+
+  <body>
+    <div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+
+
+
+
+   <h2>BOV Data</h2>
+   
+
+
+ <script type="text/javascript">
+var data1=[
+{"time":"time1","setpoint":25,"feedback":26},
+{"time":"time2"," setpoint":50,"feedback":52},
+{"time":"time3","setpoint":75,"feedback":74},
+{"time":"time4","setpoint":100,"feedback":99}
+];
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['time', 'setpoint', 'feedback'],
+          ['time1', 25,      26],
+          ['time2',  50,      52],
+          ['time3',  75,       74],
+          ['time3',  100,      99]
+        ]);
+
+        var options = {
+          title: 'Position of BOV (Blow Off Valve)',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+
+
+
+
+
+
+
+   <h2>Data Statistics (Console)</h2>
+   
+
+
+<script type="text/javascript">
+var signals=[];
+var idata=[["TE53_3_1",80,-200,850,"degC","radial bearing temp. HSS NDS"],["TE53_3_3",72,-200,850,"degC","radial bearing temp. HSS DS"],["TE53_3_5",61,-200,850,"degC","radial bearing temp. LSS NDS"],["TE53_3_6",65,-200,850,"degC","axial bearing temp. LSS DS ULS"],["TE53_3_7",75,-200,850,"degC","radial bearing temp. LSS DS"],["TE53_3_8",78,-200,850,"degC","axial bearing temp. LSS DS LS"],["TE53_5_U",60,-200,850,"degC","motor winding temperature U"],["TE53_5_V",57,-200,850,"degC","motor winding temperature V"],["TE53_5_W",58,-200,850,"degC","motor winding temperature W"],["MM_current",60,0,100,"A","main motor current"],["BOV_SP_DCS",20,0,100,"%","BOV setpoint from DCS"],["TE53_4_1",73,-200,850,"degC","motor bearing temperature de"],["TE53_4_2",74,-200,850,"degC","motor bearing temperature nde"],["TE53_2",81,-200,850,"degC","temperature gas inlet IGV"],["PT41_1",6,0,8,"bar","oil pressure"],["TIT51_2",62,0,100,"degC","oil temperature"],["GT61_1",31,0,100,"%","IGV position"],["TE54_1",30,-50,200,"degC","suction temperature"],["PT45_2",800,700,1000,"bar","suction pressure"],["PDT45_1",21,0,35,"mbar","suction flow"],["PT45_3",1500,700,2800,"mbar","discharge pressure"],["XE64_1",63,0,125,"µm","X vibration gearbox hss nds"],["YE64_1",64,0,125,"µm","Y vibration gearbox hss nds"],["GT24_2 ",21,0,100,"%","BOV position"],["IGV_SP_DCS",30,0,100,"%","set point IGV from DCS"],["WE60_1",128,0,1000,"t","weight load of No1 feeder"],["WE60_2",95,0,1000,"t","weight load of No2 feeder"],["WE60_3",161,0,1000,"t","weight load of No3 feeder"],["WE60_4",139,0,1000,"t","weight load of No4 feeder"],["WE60_5",20,0,1000,"t","weight load of No5 feeder"]];
+var sdata1,sdata2,sdata3,sdata4;
+
+
+    var myiArray = idata;
+
+    for (i=0;i<idata.length;i++)
+    {
+    	signals[i]=[idata[i][1],idata[i][4]];
+    }
+    
+    
+    sdata1= signals.filter(test1);
+    count1=sdata1.length;
+    console.log("Total number of temperature signals:"+count1);
+ 
+    sdata2= signals.filter(test2);
+    count2=sdata2.length;
+    console.log("Total number of pressure signals:"+count2); 
+
+    sdata3= signals.filter(test3);
+    count3=sdata3.length;
+    console.log("Total number of vibration signals:"+count3); 
+
+    sdata4= signals.filter(test4);
+    count4=sdata4.length;
+    console.log("Total number of weight signals:"+count4); 
+    
+
+function test1(s){return (s[0]>0 && s[1]=="degC");}
+function test2(s){return (s[0]>0 && (s[1]=="bar" || s[1]=="mbar"));}
+function test3(s){return (s[0]>0 && s[1]=="µm");}
+function test4(s){return (s[0]>0 && s[1]=="t");}
+
+ </script>
+
+
+
+
+
+
+    <div class="footer">
+      <div class="footer-logo-container">
+        <img class="footer-logo" src="/images/monogram-wdmk.png"></img>
+      </div>
+    </div>
+  </body>
+
+</html>
