@@ -1,7 +1,5 @@
-# IIoT_App
+# Initiate Industrial Internet Applications Using GE’s Predix Services 
 
-
-Initiate Industrial Internet Applications Using GE’s Predix Services 
 Project Readme File 
 Building software as a service in industry is becoming widely popular in digital age. However, growing number of cyber attack in industry shocked industrial companies, customers, and the public. Currently, cyber security is the top issue in this scenario. To develop a secure application from square one or to adopt a security service from an industrial platform, that is a question. Actually, the second option is more reasonable and feasible.
 In this project, I want to show how to initiate an industrial internet application with GE’s Predix Security Service. To achieve that, I need to use Predix platform with diverse applications and services.
